@@ -182,7 +182,7 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-20 max-w-4xl w-full px-5 sm:px-8 text-center flex flex-col items-center gap-5 sm:gap-6 py-8 sm:py-12"
+        className="relative z-20 max-w-4xl w-full px-5 sm:px-8 text-center flex flex-col items-center gap-5 sm:gap-6 pt-8 sm:pt-12 pb-8"
       >
         {/* Live badge */}
         <motion.div
@@ -284,21 +284,21 @@ export default function Hero() {
             </span>
           ))}
         </motion.div>
-      </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.button
-        onClick={scrollToMenu}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8 }}
-        className="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors z-20"
-      >
-        <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Ver Menú</span>
-        <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
-          <ChevronDown className="size-5" />
-        </motion.div>
-      </motion.button>
+        {/* Scroll indicator — dentro del flujo, nunca se superpone */}
+        <motion.button
+          onClick={scrollToMenu}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8 }}
+          className="flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors mt-2"
+        >
+          <span className="text-[10px] font-bold tracking-[0.3em] uppercase">Ver Menú</span>
+          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+            <ChevronDown className="size-5" />
+          </motion.div>
+        </motion.button>
+      </motion.div>
     </section>
   );
 }

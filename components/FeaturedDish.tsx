@@ -110,15 +110,6 @@ export default function FeaturedDish() {
                 ))}
               </div>
 
-              {/* Price */}
-              <div className="flex items-center gap-4">
-                <span className="text-[#ffb300] font-black text-3xl sm:text-4xl">$22.000</span>
-                <span className="text-white/30 line-through text-lg">$28.000</span>
-                <span className="bg-[#ff4400]/20 text-[#ff4400] text-xs font-black px-3 py-1 rounded-full">
-                  −21% HOY
-                </span>
-              </div>
-
               {/* CTA */}
               <motion.button
                 onClick={handleOrder}

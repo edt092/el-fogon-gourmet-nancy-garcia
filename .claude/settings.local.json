@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(cd \"/e/coding/proyectos-personales/activos/el-fogon-gourmet-nancy-garcía\" && npm run build 2>&1)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(cd \"/e/coding/proyectos-personales/activos/el-fogon-gourmet-nancy-garcía\" && git push -u origin master 2>&1)"
     ]
   }
 }
