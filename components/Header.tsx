@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Flame, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { whatsappLink } from "@/lib/config";
+import LogoSVG from "@/components/LogoSVG";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -63,13 +64,11 @@ export default function Header() {
           {/* Logo */}
           <motion.button
             onClick={() => scrollTo("#hero")}
-            className="flex items-center gap-2.5 group"
+            className="flex items-center gap-2 group"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
-            <div className="size-9 sm:size-10 bg-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,68,0,0.5)] group-hover:shadow-[0_0_25px_rgba(255,68,0,0.7)] transition-shadow">
-              <Flame className="size-5 text-white" fill="currentColor" />
-            </div>
+            <LogoSVG className="w-11 h-11 sm:w-14 sm:h-14 drop-shadow-[0_0_8px_rgba(255,100,0,0.5)] group-hover:drop-shadow-[0_0_16px_rgba(255,100,0,0.7)] transition-[filter] duration-300" />
             <div className="leading-none">
               <p className="text-white text-base sm:text-lg font-black font-serif tracking-tight">
                 El Fogón Gourmet

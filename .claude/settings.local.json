@@ -3,7 +3,17 @@
     "allow": [
       "Bash(cd \"/e/coding/proyectos-personales/activos/el-fogon-gourmet-nancy-garcía\" && npm run build 2>&1)",
       "Bash(cd:*)",
-      "Bash(cd \"/e/coding/proyectos-personales/activos/el-fogon-gourmet-nancy-garcía\" && git push -u origin master 2>&1)"
+      "Bash(cd \"/e/coding/proyectos-personales/activos/el-fogon-gourmet-nancy-garcía\" && git push -u origin master 2>&1)",
+      "Bash(pip install *)",
+      "Bash(playwright install *)",
+      "Bash(python -m pip install playwright -q)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(npm run *)",
+      "Bash(Start-Sleep -Seconds 5)",
+      "Bash(Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 5)",
+      "Bash(Select-Object -ExpandProperty StatusCode)",
+      "Bash(curl *)",
+      "Bash(python *)"
     ]
   }
 }
