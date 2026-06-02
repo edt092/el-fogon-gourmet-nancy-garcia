@@ -34,7 +34,7 @@ export default function WhatsAppFloat() {
 
   const handleClick = () => {
     window.open(
-      whatsappLink("¡Hola! Quiero hacer un pedido en El Fogón Gourmet 🔥"),
+      whatsappLink("Hola El Fogon Gourmet quiero hacer un pedido"),
       "_blank"
     );
   };
@@ -61,9 +61,9 @@ export default function WhatsAppFloat() {
                   <X className="size-3 text-white" />
                 </button>
                 <p className="text-xs font-bold leading-snug">
-                  🔥 ¡Hola! ¿Listo para el mejor asado del domingo?
+                  🫓 ¿Tienes un evento en Bucaramanga?
                 </p>
-                <p className="text-xs text-gray-500 mt-1">Escríbenos, pedidos limitados.</p>
+                <p className="text-xs text-gray-500 mt-1">Pedimos arepas, ayacos, tamales y más.</p>
               </motion.div>
             )}
           </AnimatePresence>

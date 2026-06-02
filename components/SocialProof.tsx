@@ -13,19 +13,19 @@ const stats = [
 
 const testimonials = [
   {
-    text: "La sopa de gallina de Nancy es lo más rico que he comido. ¡Me recuerda a la cocina de mi abuela pero mejor!",
+    text: "Pedí las arepas rellenas para el cumpleaños de mi mamá — 50 unidades — y quedaron increíbles. Todo el mundo preguntó dónde las compré. ¡Las de Nancy son únicas en Bucaramanga!",
     name: "María F.",
     role: "Cliente fiel desde 2020",
   },
   {
-    text: "Los cortes premium son de otro nivel. Se nota que hay pasión y técnica en cada preparación.",
+    text: "Encargué tamales santandereanos para una reunión corporativa de 80 personas. El proceso fue fácil por WhatsApp y llegaron a tiempo. Sabor casero de verdad.",
     name: "Andrés R.",
-    role: "Amante del asado",
+    role: "Eventos corporativos Bucaramanga",
   },
   {
-    text: "Cada domingo me toca llegar temprano porque se acaba. La mejor inversión del fin de semana.",
+    text: "Los ayacos de El Fogón Gourmet son los mejores que he probado en Bucaramanga. Pedido bajo encargo, sin complicaciones. Nancy responde rápido por WhatsApp.",
     name: "Carolina M.",
-    role: "Vecina del Mercahogar",
+    role: "Clienta frecuente",
   },
 ];
 

@@ -19,10 +19,10 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 );
 
 const navLinks = [
-  { href: "#menu", label: "Cortes" },
-  { href: "#aves", label: "Gallina" },
-  { href: "#especialidades", label: "Especialidades" },
-  { href: "#ubicacion", label: "Ubicación" },
+  { href: "#menu", label: "Nuestros Platos" },
+  { href: "#eventos", label: "Para Eventos" },
+  { href: "#como-pedir", label: "Cómo Pedir" },
+  { href: "#ubicacion", label: "Contacto" },
 ];
 
 export default function Header() {
@@ -37,7 +37,7 @@ export default function Header() {
 
   const handleWhatsApp = () => {
     window.open(
-      whatsappLink("¡Hola! Quiero hacer un pedido en El Fogón Gourmet 🔥"),
+      whatsappLink("Hola El Fogon Gourmet quiero hacer un pedido"),
       "_blank"
     );
   };

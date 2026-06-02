@@ -4,10 +4,18 @@ import { motion } from "framer-motion";
 import { Flame, MessageCircle, Instagram } from "lucide-react";
 import { whatsappLink } from "@/lib/config";
 
+const productLinks = [
+  { label: "Arepas Rellenas", href: "/arepas-rellenas-bucaramanga/" },
+  { label: "Papas Rellenas", href: "/papas-rellenas-bucaramanga/" },
+  { label: "Ayacos", href: "/ayacos-bucaramanga/" },
+  { label: "Tamales", href: "/tamales-bucaramanga/" },
+  { label: "Asados", href: "/asados-dominicales-bucaramanga/" },
+];
+
 export default function Footer() {
   const handleWhatsApp = () => {
     window.open(
-      whatsappLink("¡Hola! Quiero hacer un pedido en El Fogón Gourmet 🔥"),
+      whatsappLink("Hola El Fogon Gourmet quiero hacer un pedido"),
       "_blank"
     );
   };
@@ -36,12 +44,36 @@ export default function Footer() {
             <p className="font-signature italic text-[#ffb300] text-lg sm:text-xl">Nancy García</p>
           </motion.div>
 
+          {/* Product links for SEO */}
+          <nav aria-label="Nuestros platos">
+            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+              {productLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-white/40 hover:text-[#ff4400] text-sm font-semibold transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <button
+                  onClick={handleWhatsApp}
+                  className="text-[#25D366] hover:text-[#20ba57] text-sm font-semibold transition-colors"
+                >
+                  Hacer pedido
+                </button>
+              </li>
+            </ul>
+          </nav>
+
           {/* Quote */}
           <blockquote className="text-slate-400 text-base sm:text-lg md:text-xl italic max-w-2xl leading-relaxed">
-            "No solo servimos comida; servimos{" "}
-            <span className="text-white font-semibold">tradición</span>, fuego y el sazón
-            irresistible de{" "}
-            <span className="font-signature text-[#ffb300] not-italic text-xl sm:text-2xl">Nancy García</span>."
+            "Comida típica santandereana hecha con{" "}
+            <span className="text-white font-semibold">tradición</span> y amor por{" "}
+            <span className="font-signature text-[#ffb300] not-italic text-xl sm:text-2xl">Nancy García</span>.
+            Pedidos bajo encargo en Bucaramanga."
           </blockquote>
 
           {/* CTA */}
@@ -77,7 +109,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/25 text-xs text-center sm:text-left">
-            © {new Date().getFullYear()} El Fogón Gourmet — Nancy García. Todos los derechos reservados.
+            © {new Date().getFullYear()} El Fogón Gourmet — Comida tradicional bumanguesa bajo encargo. Bucaramanga, Colombia.
           </p>
           <div className="flex gap-5">
             <button className="text-white/25 hover:text-white/50 text-xs transition-colors">

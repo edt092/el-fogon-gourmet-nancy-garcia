@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ShoppingCart, Star, Flame, ChevronRight } from "lucide-react";
+import { ShoppingCart, Flame, ChevronRight } from "lucide-react";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" className={className} aria-hidden="true">
@@ -16,77 +16,71 @@ type MenuItem = {
   id: string;
   name: string;
   description: string;
-  image: string;
+  image?: string;
+  emoji?: string;
   category: string;
   badge?: string;
   featured?: boolean;
-  cookOptions?: string[];
+  slug: string;
 };
 
 const menuItems: MenuItem[] = [
   {
-    id: "cortes-premium",
-    name: "Cortes Premium",
-    description: "Chatas, carne fresca y semioreada. Marmoleado de alta calidad, asado lentamente sobre leña de guayabo con el toque secreto de Nancy.",
-    image: "/img/cortes-premium.png",
-    category: "cortes",
+    id: "arepas-rellenas",
+    name: "Arepas rellenas en Bucaramanga",
+    description: "El producto estrella de El Fogón Gourmet. Arepas rellenas hechas en casa con los mejores ingredientes. Comida típica santandereana, pedidos desde 20 unidades para tu evento o reunión familiar.",
+    image: "/img/arepas-rellenas.png",
+    category: "masa",
     badge: "⭐ El más pedido",
-    cookOptions: ["1/2", "3/4", "WD"],
-  },
-  {
-    id: "sopa-arroz-gallina",
-    name: "Sopa de Arroz de Gallina",
-    description: "Nuestra joya de la corona. Preparada por Nancy García durante 6 horas a fuego lento. El sabor del hogar en cada cucharada.",
-    image: "/img/sopa-arroz-gallina.png",
-    category: "especialidades",
-    badge: "🏆 Recomendado",
     featured: true,
+    slug: "/arepas-rellenas-bucaramanga/",
   },
   {
-    id: "gallina-tradicional",
-    name: "Gallina Tradicional",
-    description: "Criolla, asada con leña. Piel dorada y jugosa por dentro. Un clásico de El Fogón Gourmet que enamora a cada domingo.",
-    image: "/img/gallina-tradicional.png",
-    category: "aves",
+    id: "papas-rellenas",
+    name: "Papas rellenas",
+    description: "Papas rellenas crujientes por fuera y llenas de sabor por dentro. Perfectas para fiestas, cumpleaños y reuniones familiares en Bucaramanga. Comida bajo encargo.",
+    image: "/img/papas-rellenas.png",
+    category: "masa",
+    slug: "/papas-rellenas-bucaramanga/",
   },
   {
-    id: "gallina-filete-plancha",
-    name: "Filete de Pechuga a la Plancha",
-    description: "Pechuga de gallina criolla a la plancha con marinada especial de Nancy. Light, sabrosa y con el toque gourmet que nos distingue.",
-    image: "/img/gallina-filete-plancha.png",
-    category: "aves",
-    badge: "🌿 Opción Light",
+    id: "hallacos",
+    name: "Ayacos en Bucaramanga",
+    description: "Ayacos bumangueses con masa de maíz y relleno tradicional. Comida típica santandereana elaborada bajo encargo para eventos y reuniones familiares en Bucaramanga.",
+    image: "/img/ayacos-original.jpg",
+    category: "masa",
+    slug: "/ayacos-bucaramanga/",
   },
   {
-    id: "spaguettis-pollo",
-    name: "Spaguettis con Pollo",
-    description: "Fusión criolla. Spaguettis al dente con pollo asado y salsa artesanal de Nancy García. Un plato que sorprende y convence.",
-    image: "/img/spaguettis-pollo.png",
-    category: "fusion",
+    id: "tamales",
+    name: "Tamales santandereanos",
+    description: "Tamales hechos en casa con la receta tradicional santandereana. Rellenos de cerdo, pollo y garbanzos. Ideales para eventos corporativos, cumpleaños y reuniones especiales en Bucaramanga.",
+    image: "/img/tamales.jpeg",
+    category: "masa",
+    slug: "/tamales-bucaramanga/",
   },
   {
-    id: "spaguettis-brasa",
-    name: "Fusión Brasa",
-    description: "Spaguettis con pollo y carne a la brasa. Lo mejor de dos mundos: pasta italiana con el fuego colombiano. ¡Irresistible!",
-    image: "/img/spaguettis-brasa.png",
-    category: "fusion",
-    badge: "🆕 Nuevo",
+    id: "asados-dominicales",
+    name: "Asados dominicales",
+    description: "Carne oreada, chata, carne fresca, espagueti, arroz chino y arroz paisa. Comida bajo encargo en Bucaramanga, solo los domingos con reserva previa.",
+    image: "/img/cortes-premium.png",
+    category: "asados",
+    badge: "📅 Solo domingos",
+    slug: "/asados-dominicales-bucaramanga/",
   },
 ];
 
 const categories = [
-  { id: "todos", label: "Todo el Menú" },
-  { id: "cortes", label: "Cortes" },
-  { id: "aves", label: "Gallina" },
-  { id: "especialidades", label: "Especialidades" },
-  { id: "fusion", label: "Fusión" },
+  { id: "todos", label: "Todos los Platos" },
+  { id: "masa", label: "De Masa" },
+  { id: "asados", label: "Asados" },
 ];
 
 function MenuCard({ item, index }: { item: MenuItem; index: number }) {
   const [hovered, setHovered] = useState(false);
 
   const handleOrder = () => {
-    const msg = `¡Hola! Quiero ordenar *${item.name}* de El Fogón Gourmet 🔥`;
+    const msg = `Hola, quiero pedir *${item.name}* en El Fogón Gourmet`;
     window.open(whatsappLink(msg), "_blank");
   };
 
@@ -111,22 +105,32 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
         </div>
       )}
 
-      {/* Image */}
+      {/* Image or placeholder */}
       <div className="relative aspect-[16/10] overflow-hidden bg-[#1a0f0a]">
-        <motion.div
-          animate={{ scale: hovered ? 1.07 : 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full h-full"
-        >
-          <Image
-            src={item.image}
-            alt={item.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            priority={index < 2}
-          />
-        </motion.div>
+        {item.image ? (
+          <motion.div
+            animate={{ scale: hovered ? 1.07 : 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="w-full h-full"
+          >
+            <Image
+              src={item.image}
+              alt={item.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              priority={index < 2}
+            />
+          </motion.div>
+        ) : (
+          <motion.div
+            animate={{ scale: hovered ? 1.07 : 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="w-full h-full bg-gradient-to-br from-[#3d1a00] via-[#2d1208] to-[#1a0f0a] flex items-center justify-center"
+          >
+            <span className="text-6xl select-none">{item.emoji}</span>
+          </motion.div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#120a07]/80 via-transparent to-transparent" />
       </div>
 
@@ -136,23 +140,14 @@ function MenuCard({ item, index }: { item: MenuItem; index: number }) {
 
         <p className="text-slate-400 text-sm leading-relaxed flex-1">{item.description}</p>
 
-        {/* Cook options */}
-        {item.cookOptions && (
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-white/30 uppercase tracking-wider">Término:</span>
-            <div className="flex gap-1.5">
-              {item.cookOptions.map((opt) => (
-                <span key={opt} className="text-[10px] border border-white/20 text-white/50 px-2 py-0.5 rounded-full">
-                  {opt}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-white/5 mt-auto">
-          <span className="font-signature italic text-[#ffb300]/80 text-base">Nancy García</span>
+          <a
+            href={item.slug}
+            className="text-white/40 hover:text-[#ff4400] text-xs font-semibold transition-colors flex items-center gap-1"
+          >
+            Ver más <ChevronRight className="size-3" />
+          </a>
 
           <motion.button
             onClick={handleOrder}
@@ -195,10 +190,10 @@ export default function Menu() {
           <div className="space-y-2">
             <p className="text-[#ff4400] font-bold tracking-[0.2em] uppercase text-xs sm:text-sm flex items-center gap-2">
               <Flame className="size-4" fill="currentColor" />
-              Nuestra Parrilla
+              Comida típica santandereana
             </p>
             <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-black font-serif leading-tight">
-              Selección de la Brasa
+              Nuestros platos más pedidos
             </h2>
           </div>
 
@@ -251,20 +246,20 @@ export default function Menu() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-14 sm:mt-16 text-center"
         >
-          <p className="text-white/50 text-sm mb-5">¿Quieres saber precios o tienes alguna duda? Escríbenos directo.</p>
+          <p className="text-white/50 text-sm mb-5">¿Tienes un evento, reunión o fiesta? Escríbenos y cotizamos tu pedido sin compromiso.</p>
           <motion.button
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => {
               window.open(
-                whatsappLink("Hola, quiero saber más sobre el menú disponible 🍽️"),
+                whatsappLink("Hola El Fogon Gourmet quiero hacer un pedido"),
                 "_blank"
               );
             }}
             className="inline-flex items-center gap-3 border-2 border-[#25D366] text-[#25D366] font-black px-8 py-4 rounded-full hover:bg-[#25D366] hover:text-white transition-all duration-300 group"
           >
             <WhatsAppIcon className="size-4" />
-            CONSULTAR PRECIOS POR WHATSAPP
+            COTIZAR MI PEDIDO POR WHATSAPP
             <ChevronRight className="size-4 group-hover:translate-x-1 transition-transform" />
           </motion.button>
         </motion.div>

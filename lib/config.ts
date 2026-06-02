@@ -11,7 +11,7 @@ export const BUSINESS = {
   // ⚠️  REEMPLAZA con el número real de WhatsApp
   // Formato: código país + número sin espacios ni guiones
   // Ejemplo Colombia: 573001234567
-  whatsapp: "573017787067",
+  whatsapp: "573176407015",
 
   address: {
     street: "CRA 28A 40-12",

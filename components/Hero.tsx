@@ -50,7 +50,7 @@ function CountdownTimer() {
     >
       {/* Label */}
       <p className={`text-[10px] font-black tracking-[0.25em] uppercase ${isUrgent ? "text-[#ff4400]" : "text-white/50"}`}>
-        ⏳ Tiempo restante para pedir
+        ⏳ Haz tu pedido hoy — cupo limitado
       </p>
 
       {/* Clock blocks */}
@@ -122,7 +122,7 @@ function CountdownTimer() {
 
       {/* Urgency text */}
       <p className="text-white/40 text-[10px] font-medium">
-        {isUrgent ? "🔥 ¡Últimas unidades! No esperes más" : "Pedidos se cierran pronto — Stock limitado"}
+        {isUrgent ? "🔥 ¡Últimas unidades! Escríbenos ya" : "Reserva tu pedido con anticipación — cupo limitado"}
       </p>
     </motion.div>
   );
@@ -136,7 +136,7 @@ export default function Hero() {
 
   const handleOrder = () => {
     window.open(
-      whatsappLink("¡Hola! Quiero hacer un pedido en El Fogón Gourmet 🔥"),
+      whatsappLink("Hola El Fogon Gourmet quiero hacer un pedido"),
       "_blank"
     );
   };
@@ -193,7 +193,7 @@ export default function Hero() {
         >
           <span className="flex size-2 rounded-full bg-[#ff4400] animate-pulse" />
           <span className="text-white text-xs font-bold tracking-widest uppercase">
-            Este Domingo — Solo hasta agotar stock
+            Pedidos bajo encargo · Entrega en Bucaramanga
           </span>
         </motion.div>
 
@@ -205,11 +205,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-serif leading-[1.05] tracking-tight text-shadow-fire"
+          className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black font-serif leading-[1.1] tracking-tight text-shadow-fire"
         >
-          ¡El asado del{" "}
+          Comida tradicional bumanguesa para tus{" "}
           <span className="relative inline-block">
-            <span className="relative z-10 text-[#ff4400]">domingo</span>
+            <span className="relative z-10 text-[#ff4400]">eventos y reuniones</span>
             <motion.span
               className="absolute inset-x-0 -bottom-2 h-1 bg-[#ff4400] rounded-full"
               initial={{ scaleX: 0 }}
@@ -217,7 +217,7 @@ export default function Hero() {
               transition={{ delay: 1, duration: 0.6 }}
             />
           </span>{" "}
-          que todos van a recordar!
+          <span className="whitespace-nowrap">— bajo pedido</span>
         </motion.h1>
 
         {/* Subheading */}
@@ -228,14 +228,14 @@ export default function Hero() {
           className="flex flex-col items-center gap-2"
         >
           <p className="text-slate-200 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed">
-            Sazón único de{" "}
+            Arepas rellenas, papas rellenas, ayacos y tamales hechos en casa por{" "}
             <span className="font-signature italic text-[#ffb300] text-xl sm:text-2xl">
               Nancy García
-            </span>{" "}
-            • Cortes premium, gallina criolla y brasa artesanal.
+            </span>
+            . Pedidos desde 20 unidades para tu evento en Bucaramanga.
           </p>
           <p className="text-[#ff4400] text-sm font-bold tracking-wide uppercase">
-            📍 CC. Mercahogar • Domingos desde las 11 AM
+            📍 Bucaramanga, Colombia · Comida bajo encargo
           </p>
         </motion.div>
 
@@ -254,7 +254,7 @@ export default function Hero() {
           >
             <span className="relative z-10 flex items-center justify-center gap-2">
               <Flame className="size-5" fill="currentColor" />
-              ¡QUIERO PEDIR AHORA!
+              HACER MI PEDIDO
             </span>
             <motion.span
               className="absolute inset-0 bg-gradient-to-r from-[#ff6600] to-[#ff4400] opacity-0 group-hover:opacity-100 transition-opacity"
@@ -267,7 +267,7 @@ export default function Hero() {
             whileTap={{ scale: 0.97 }}
             className="border-2 border-white/30 text-white font-bold px-8 py-4 rounded-full backdrop-blur-sm hover:border-white/60 hover:bg-white/5 transition-all"
           >
-            Ver el Menú
+            Ver todos los platos
           </motion.button>
         </motion.div>
 
@@ -278,7 +278,7 @@ export default function Hero() {
           transition={{ delay: 1.3, duration: 0.7 }}
           className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-1"
         >
-          {["🔥 Brasa Artesanal", "✅ Pedidos por WhatsApp", "⏰ Domingos Limited Edition"].map((badge) => (
+          {["🫓 Arepas Rellenas", "✅ Pedidos por WhatsApp", "📦 Desde 20 unidades"].map((badge) => (
             <span key={badge} className="text-white/60 text-xs sm:text-sm font-medium">
               {badge}
             </span>

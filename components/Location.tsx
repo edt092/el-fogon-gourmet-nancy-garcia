@@ -2,8 +2,29 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Clock, MessageCircle, Navigation, Phone } from "lucide-react";
+import { MapPin, Clock, MessageCircle, Navigation } from "lucide-react";
 import { whatsappLink } from "@/lib/config";
+
+const steps = [
+  {
+    number: "01",
+    icon: <MessageCircle className="size-5" />,
+    title: "Escríbenos por WhatsApp con el plato y la cantidad",
+    desc: "Dinos qué quieres pedir — arepas rellenas, papas rellenas, ayacos, tamales — y cuántas unidades necesitas.",
+  },
+  {
+    number: "02",
+    icon: <Clock className="size-5" />,
+    title: "Confirmamos disponibilidad y acordamos fecha de entrega",
+    desc: "Verificamos disponibilidad para tu evento en Bucaramanga y acordamos la fecha y hora de entrega.",
+  },
+  {
+    number: "03",
+    icon: <MapPin className="size-5" />,
+    title: "Recibe tu comida el día del evento",
+    desc: "Comida típica santandereana bajo encargo, lista para tu reunión familiar, cumpleaños o evento corporativo.",
+  },
+];
 
 export default function Location() {
   const ref = useRef<HTMLElement>(null);
@@ -11,7 +32,7 @@ export default function Location() {
 
   const handleWhatsApp = () => {
     window.open(
-      whatsappLink("¡Hola! Quiero hacer un pedido en El Fogón Gourmet 🔥"),
+      whatsappLink("Hola El Fogon Gourmet quiero hacer un pedido"),
       "_blank"
     );
   };
@@ -26,12 +47,12 @@ export default function Location() {
   return (
     <section
       ref={ref}
-      id="ubicacion"
+      id="como-pedir"
       className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-20 bg-[#120a07] border-t border-white/5"
     >
       <div className="max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Info */}
+          {/* Steps */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -40,65 +61,31 @@ export default function Location() {
           >
             <div>
               <p className="text-[#ff4400] font-bold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3">
-                Encuéntranos
+                Proceso de pedido
               </p>
               <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-black font-serif leading-tight">
-                Donde nace el fuego
+                ¿Cómo hacer tu pedido?
               </h2>
             </div>
 
             <div className="space-y-5">
-              {/* Address */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="flex items-start gap-4 group"
-              >
-                <div className="size-12 rounded-2xl bg-[#ff4400]/10 border border-[#ff4400]/20 flex items-center justify-center text-[#ff4400] flex-shrink-0 group-hover:bg-[#ff4400]/20 transition-colors">
-                  <MapPin className="size-5" />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-lg sm:text-xl">CRA 28A 40-12</p>
-                  <p className="text-slate-400 text-sm">CC. Mercahogar, Primer Piso</p>
-                  <p className="text-slate-400 text-sm">Bucaramanga, Colombia</p>
-                </div>
-              </motion.div>
-
-              {/* Schedule */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="flex items-start gap-4 group"
-              >
-                <div className="size-12 rounded-2xl bg-[#ff4400]/10 border border-[#ff4400]/20 flex items-center justify-center text-[#ff4400] flex-shrink-0 group-hover:bg-[#ff4400]/20 transition-colors">
-                  <Clock className="size-5" />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-lg sm:text-xl">Solo los Domingos</p>
-                  <p className="text-slate-400 text-sm">Desde las <strong className="text-white">11:00 AM</strong></p>
-                  <p className="text-[#ff4400] text-sm font-bold animate-pulse">
-                    ⚡ Hasta agotar existencias
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Phone */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                className="flex items-start gap-4 group"
-              >
-                <div className="size-12 rounded-2xl bg-[#ff4400]/10 border border-[#ff4400]/20 flex items-center justify-center text-[#ff4400] flex-shrink-0 group-hover:bg-[#ff4400]/20 transition-colors">
-                  <Phone className="size-5" />
-                </div>
-                <div>
-                  <p className="text-white font-bold text-lg sm:text-xl">Pedidos anticipados</p>
-                  <p className="text-slate-400 text-sm">Escríbenos el sábado para garantizar tu pedido</p>
-                </div>
-              </motion.div>
+              {steps.map((step, i) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                  className="flex items-start gap-4 group"
+                >
+                  <div className="size-12 rounded-2xl bg-[#ff4400]/10 border border-[#ff4400]/20 flex items-center justify-center text-[#ff4400] flex-shrink-0 group-hover:bg-[#ff4400]/20 transition-colors font-black text-sm">
+                    {step.number}
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-base sm:text-lg">{step.title}</p>
+                    <p className="text-slate-400 text-sm mt-1">{step.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
             {/* CTA Buttons */}
@@ -115,7 +102,7 @@ export default function Location() {
                 className="flex items-center justify-center gap-3 bg-[#25D366] text-white px-7 py-4 rounded-full font-black text-sm shadow-[0_4px_20px_rgba(37,211,102,0.3)] hover:shadow-[0_4px_30px_rgba(37,211,102,0.5)] transition-shadow"
               >
                 <MessageCircle className="size-5" fill="currentColor" />
-                PEDIR POR WHATSAPP
+                EMPEZAR PEDIDO POR WHATSAPP
               </motion.button>
 
               <motion.button
@@ -125,17 +112,18 @@ export default function Location() {
                 className="flex items-center justify-center gap-3 bg-white/5 border border-white/15 text-white px-7 py-4 rounded-full font-black text-sm hover:bg-white/10 hover:border-white/25 transition-all"
               >
                 <Navigation className="size-4" />
-                CÓMO LLEGAR
+                ASADOS — VER UBICACIÓN
               </motion.button>
             </motion.div>
           </motion.div>
 
-          {/* Map */}
+          {/* Map — punto de venta dominical */}
           <motion.div
             initial={{ opacity: 0, x: 30, scale: 0.95 }}
             animate={isInView ? { opacity: 1, x: 0, scale: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative min-h-[350px] sm:min-h-[420px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
+            id="ubicacion"
           >
             <iframe
               src="https://maps.google.com/maps?q=CC.+Mercahogar+Bucaramanga+Carrera+28A&output=embed&z=16&hl=es"
@@ -145,7 +133,7 @@ export default function Location() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Ubicación El Fogón Gourmet"
+              title="Ubicación El Fogón Gourmet — Asados Dominicales CC. Mercahogar Bucaramanga"
             />
             {/* Pin overlay */}
             <div className="absolute bottom-4 left-4 right-4 bg-[#120a07]/90 backdrop-blur-md rounded-2xl p-4 border border-white/10">
@@ -154,8 +142,8 @@ export default function Location() {
                   <MapPin className="size-5 text-white" fill="currentColor" />
                 </div>
                 <div>
-                  <p className="text-white font-bold text-sm">El Fogón Gourmet</p>
-                  <p className="text-slate-400 text-xs">CC. Mercahogar, CRA 28A 40-12 • Primer Piso</p>
+                  <p className="text-white font-bold text-sm">El Fogón Gourmet — Asados Dominicales</p>
+                  <p className="text-slate-400 text-xs">CC. Mercahogar, CRA 28A 40-12 · Solo domingos</p>
                 </div>
               </div>
             </div>
